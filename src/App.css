@@ -1,0 +1,146 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Board {
+  width: 2000px;
+  height: 2000px;
+  border: 1px solid #333;
+  position: relative;
+}
+
+.AddCard {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  z-index: 1000;
+  background: white;
+  margin: 60px;
+}
+
+.starredNotes {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  background: white;
+  margin-left: 60px;
+  
+}
+
+.Card {
+  border: 1px solid #bdbdbd;
+  padding: 20px;
+  padding-top: 40px;
+  padding-right: 40px;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  min-width: 140px;
+  min-height: 200px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: white;
+  border-radius: 15px;
+  transition: 0.07s;
+  opacity: 0.99;
+}
+
+.DeleteBtn {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  opacity: 0.5;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+}
+
+.EditableText {
+  min-width: 200px;
+  min-height: 200px;
+  margin-top: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.92rem;
+  line-height: 1rem;
+  font-family: "M PLUS Rounded 1c";
+  background: transparent;
+  overflow: hidden;
+  resize: none;
+}
+
+.Text {
+  min-width: 200px;
+  min-height: 200px;
+  margin-top: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.92rem;
+  line-height: 1rem;
+  font-family: "M PLUS Rounded 1c";
+  background: transparent;
+  overflow: hidden;
+  resize: none;
+}
+
+textarea:focus {
+  outline: 0;
+}
+
+.ColorSelector {
+  position: absolute;
+  top: 30px;
+  right: 9px;
+}
+
+.ColorCircle {
+  width: 10px;
+  height: 10px;
+  margin: 2px;
+  padding: 2px;
+  border: solid 1px #dedede;
+  border-radius: 50%;
+}
+
+.Image {
+  width: 20px; 
+  height: 20px; 
+  position: absolute; 
+  top: 10px;
+}
