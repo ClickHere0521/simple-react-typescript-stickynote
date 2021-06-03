@@ -3,7 +3,7 @@
 This project is a simple sticky note with typescript and react
 
 ## Preview
-![Sticky Note Preview](https://github.com/ClickHere0521/React-Typescript-StickyNote/blob/master/public/stickyPreview.png)
+![Sticky Note Preview](https://github.com/ClickHere0521/React-Typescript-StickyNote/edit/master/public/stickyPreview.png)
 ## How to run?
 
 In the project directory, you can run:

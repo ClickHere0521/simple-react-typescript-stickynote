@@ -66,10 +66,7 @@
 
 .Card {
   border: 1px solid #bdbdbd;
-  padding: 20px;
-  padding-top: 40px;
-  padding-right: 40px;
-  position: absolute;
+  position: absolute!important;
   width: 200px;
   height: 200px;
   min-width: 140px;
@@ -92,11 +89,12 @@
 }
 
 .EditableText {
-  min-width: 200px;
-  min-height: 200px;
+  min-height: 110px;
+  min-width: 80px;
+  width: 100%;
+  height: 100%;
   margin-top: 12px;
   border: none;
-  cursor: pointer;
   font-size: 0.92rem;
   line-height: 1rem;
   font-family: "M PLUS Rounded 1c";
@@ -106,11 +104,12 @@
 }
 
 .Text {
-  min-width: 200px;
-  min-height: 200px;
+  min-height: 110px;
+  min-width: 80px;
+  width: 100%;
+  height: 100%;
   margin-top: 12px;
   border: none;
-  cursor: pointer;
   font-size: 0.92rem;
   line-height: 1rem;
   font-family: "M PLUS Rounded 1c";
@@ -143,4 +142,13 @@ textarea:focus {
   height: 20px; 
   position: absolute; 
   top: 10px;
+}
+
+.Draggable {
+  width: 100%;
+  height: 100%;
+}
+
+.NoteBody {
+  padding: 40px 40px 20px 20px;
 }

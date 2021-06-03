@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Resizable } from "re-resizable";
 import './App.css';
 
 type Item = { text: string, color: number, x: number, y: number, star: boolean };
@@ -43,7 +44,7 @@ const App: React.FC = () => {
 
   const StickyNote = (key: string) => {
     return (
-      <div
+      <Resizable
         key={key}
         style={{
           left: items[key].x + "px",
@@ -51,69 +52,80 @@ const App: React.FC = () => {
           background: CORLORS[items[key].color],
           zIndex: key === cardZIndex ? 10000 : 0
         }}
-        draggable
         className="Card"
-        onDragStart={(e) =>
-          setDragging({
-            key,
-            x: e.clientX - items[key].x,
-            y: e.clientY - items[key].y,
-          })
-        }
-        onFocus={() => {
-          setCardZIndex(key);
+        enable={{ top:false, right:true, bottom:true, left:false, topRight:false, bottomRight:true, bottomLeft:false, topLeft:false }}
+        defaultSize={{
+          width: 280,
+          height: 280,
         }}
       >
-        <button className="DeleteBtn" onClick={() => remove(key)}>
-          ×
-        </button>
-        <img 
-          src={items[key].star ? (process.env.PUBLIC_URL + '/star.png') : (process.env.PUBLIC_URL + '/unStar.png')} 
-          className="Image"
-          alt="" 
-          onClick={() => setItems({ ...items, [key]: { ...items[key], star: !items[key].star }})}
-        />
-        <div className="ColorSelector">
-          {CORLORS.map((c, i) => (
-            <div
-              key={c}
-              className="ColorCircle"
-              onClick={() => {
-                setItems({ ...items, [key]: { ...items[key], color: i }});
-              }}
-              style={{ background: c }}
+        <div
+          draggable
+          onDragStart={(e) =>
+            setDragging({
+              key,
+              x: e.clientX - items[key].x,
+              y: e.clientY - items[key].y,
+            })
+          }
+          onFocus={() => {
+            setCardZIndex(key);
+          }}
+          className="Draggable"
+        >
+          <div className="NoteBody">
+            <button className="DeleteBtn" onClick={() => remove(key)}>
+              ×
+            </button>
+            <img 
+              src={items[key].star ? (process.env.PUBLIC_URL + '/star.png') : (process.env.PUBLIC_URL + '/unStar.png')} 
+              className="Image"
+              alt="" 
+              onClick={() => setItems({ ...items, [key]: { ...items[key], star: !items[key].star }})}
             />
-          ))}
+            <div className="ColorSelector">
+              {CORLORS.map((c, i) => (
+                <div
+                  key={c}
+                  className="ColorCircle"
+                  onClick={() => {
+                    setItems({ ...items, [key]: { ...items[key], color: i }});
+                  }}
+                  style={{ background: c }}
+                />
+              ))}
+            </div>
+            {editMode.key === key ? (
+              <textarea
+                className="EditableText"
+                // style={{ width: editMode.w-8, height: editMode.h }}
+                onChange={(e) => setInput(e.target.value)}
+                defaultValue={items[key].text}
+                autoFocus
+                onFocus={(e) => e.target.select()}
+                onBlur={() => {
+                  setInput("");
+                  setEditMode({ key: "", w: 0, h: 0 });
+                  input && setItems({ ...items, [key]: { ...items[key], text: input }});
+                }}
+              />
+            ) : (
+              <textarea
+                className="Text"
+                onClick={(e) =>
+                  setEditMode({
+                    key,
+                    w: e.currentTarget.clientWidth,
+                    h: e.currentTarget.clientHeight,
+                  })
+                }
+              >
+                {items[key].text}
+              </textarea>
+            )}
+          </div>
         </div>
-        {editMode.key === key ? (
-          <textarea
-            className="EditableText"
-            style={{ width: editMode.w-12, height: editMode.h }}
-            onChange={(e) => setInput(e.target.value)}
-            defaultValue={items[key].text}
-            autoFocus
-            onFocus={(e) => e.target.select()}
-            onBlur={() => {
-              setInput("");
-              setEditMode({ key: "", w: 0, h: 0 });
-              input && setItems({ ...items, [key]: { ...items[key], text: input }});
-            }}
-          />
-        ) : (
-          <textarea
-            className="Text"
-            onClick={(e) =>
-              setEditMode({
-                key,
-                w: e.currentTarget.clientWidth,
-                h: e.currentTarget.clientHeight,
-              })
-            }
-          >
-            {items[key].text}
-          </textarea>
-        )}
-      </div>
+      </Resizable>
     );
   };
 
