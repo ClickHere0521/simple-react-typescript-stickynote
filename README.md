@@ -6,6 +6,8 @@ This project is a simple sticky note with typescript and react
 ![Sticky Note Preview](https://github.com/ClickHere0521/React-Typescript-StickyNote/blob/master/public/stickyPreview.png)
 ## How to run?
 
+Make sure that you have executed `npm install`
+
 In the project directory, you can run:
 
 ### simply run the shell file `run.sh`
